@@ -1,0 +1,16 @@
+//Toglogchiin eeljiig hadgalah huvisagch, negdugeer toglogchiig 0, hoyordugaar toglogchiig 1 gej temdeglie
+var activePlayer = 1;
+
+// Toglogchiintsugluulsan onoog hadgalah huvisagch
+var score = [0, 0];
+
+//Toglogchiin eeljind tsugluulsan onoo
+var roundScore = 0;
+
+// Shoon ali talaar buuh fuction 1-6 hooroond randam too orno.;
+var dice = Math.floor(Math.random() * 6) + 1;
+
+// window.document.querySelectorAll("#score-0").textContent = dice;
+console.log(window.document.querySelectorAll("player-score").textContent);
+
+console.log("Shoo ingej buulaa " + dice);
