@@ -7,7 +7,8 @@ var scores;
 
 // Ð˜Ð´ÑÐ²Ñ…Ñ‚ÑÐ¹ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ Ñ†ÑƒÐ³Ð»ÑƒÑƒÐ»Ð¶ Ð±Ð°Ð¹Ð³Ð°Ð° ÑÑÐ»Ð¶Ð¸Ð¹Ð½ Ð¾Ð½Ð¾Ð¾.
 var roundScore;
-
+// Togloom ehleh toloviin function zarlav
+var isNewGame;
 // Ð¨Ð¾Ð¾Ð½Ñ‹ Ð·ÑƒÑ€Ð³Ð¸Ð¹Ð³ Ò¯Ð·Ò¯Ò¯Ð»ÑÑ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¸Ð¹Ð³ DOM-Ð¾Ð¾Ñ Ñ…Ð°Ð¹Ð¶ Ð¾Ð»Ð¾Ð¾Ð´ ÑÐ½Ð´ Ñ…Ð°Ð´Ð³Ð°Ð»ÑŠÑ
 var diceDom = document.querySelector(".dice");
 
@@ -17,6 +18,7 @@ initGame();
 // Ð¢Ð¾Ð³Ð»Ð¾Ð¾Ð¼Ñ‹Ð³ ÑˆÐ¸Ð½ÑÑÑ€ ÑÑ…Ð»ÑÑ…ÑÐ´ Ð±ÑÐ»Ñ‚Ð³ÑÐ½Ñ.
 function initGame() {
   // Ð¢Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð³ Ñ…Ð°Ð´Ð³Ð°Ð»Ð°Ñ… Ñ…ÑƒÐ²ÑŒÑÐ°Ð³Ñ‡, Ð½ÑÐ³Ð´Ò¯Ð³ÑÑÑ€ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð³ 0, Ñ…Ð¾Ñ‘Ñ€Ð´ÑƒÐ³Ð°Ð°Ñ€ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð³ 1 Ð³ÑÐ¶ Ñ‚ÑÐ¼Ð´ÑÐ³Ð»ÑÐµ.
+  isNewGame = true;
   activePlayer = 0;
 
   // Ð¢Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð´Ñ‹Ð½ Ñ†ÑƒÐ³Ð»ÑƒÑƒÐ»ÑÐ°Ð½ Ð¾Ð½Ð¾Ð¾Ð³ Ñ…Ð°Ð´Ð³Ð°Ð»Ð°Ñ… Ñ…ÑƒÐ²ÑŒÑÐ°Ð³Ñ‡
@@ -48,48 +50,59 @@ function initGame() {
 
 // Ð¨Ð¾Ð¾Ð³ ÑˆÐ¸Ð´ÑÑ… ÑÐ²ÐµÐ½Ñ‚ Ð»Ð¸ÑÑ‚ÐµÐ½ÐµÑ€
 document.querySelector(".btn-roll").addEventListener("click", function () {
-  // 1 - 6 Ð´Ð¾Ñ‚Ð¾Ñ€Ñ… ÑÐ°Ð½Ð°Ð¼ÑÐ°Ñ€Ð³Ò¯Ð¹ Ð½ÑÐ³ Ñ‚Ð¾Ð¾ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð°Ð²Ð½Ð°
-  var diceNumber = Math.floor(Math.random() * 6) + 1;
+  if (isNewGame) {
+    // 1 - 6 Ð´Ð¾Ñ‚Ð¾Ñ€Ñ… ÑÐ°Ð½Ð°Ð¼ÑÐ°Ñ€Ð³Ò¯Ð¹ Ð½ÑÐ³ Ñ‚Ð¾Ð¾ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð°Ð²Ð½Ð°
+    var diceNumber = Math.floor(Math.random() * 6) + 1;
 
-  // Ð¨Ð¾Ð¾Ð½Ñ‹ Ð·ÑƒÑ€Ð³Ð¸Ð¹Ð³ Ð²ÑÐ± Ð´ÑÑÑ€ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð¸Ñ€Ð½Ñ.
-  diceDom.style.display = "block";
+    // Ð¨Ð¾Ð¾Ð½Ñ‹ Ð·ÑƒÑ€Ð³Ð¸Ð¹Ð³ Ð²ÑÐ± Ð´ÑÑÑ€ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð¸Ñ€Ð½Ñ.
+    diceDom.style.display = "block";
 
-  // Ð‘ÑƒÑƒÑÐ°Ð½ ÑÐ°Ð½Ð°Ð¼ÑÐ°Ñ€Ð³Ò¯Ð¹ Ñ‚Ð¾Ð¾Ð½Ð´ Ñ…Ð°Ñ€Ð³Ð°Ð»Ð·Ð°Ñ… ÑˆÐ¾Ð¾Ð½Ñ‹ Ð·ÑƒÑ€Ð³Ð¸Ð¹Ð³ Ð²ÑÐ± Ð´ÑÑÑ€ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð¸Ñ€Ð½Ñ.
-  diceDom.src = "dice-" + diceNumber + ".png";
+    // Ð‘ÑƒÑƒÑÐ°Ð½ ÑÐ°Ð½Ð°Ð¼ÑÐ°Ñ€Ð³Ò¯Ð¹ Ñ‚Ð¾Ð¾Ð½Ð´ Ñ…Ð°Ñ€Ð³Ð°Ð»Ð·Ð°Ñ… ÑˆÐ¾Ð¾Ð½Ñ‹ Ð·ÑƒÑ€Ð³Ð¸Ð¹Ð³ Ð²ÑÐ± Ð´ÑÑÑ€ Ð³Ð°Ñ€Ð³Ð°Ð¶ Ð¸Ñ€Ð½Ñ.
+    diceDom.src = "dice-" + diceNumber + ".png";
 
-  // Ð‘ÑƒÑƒÑÐ°Ð½ Ñ‚Ð¾Ð¾ Ð½ÑŒ 1 ÑÑÑ ÑÐ»Ð³Ð°Ð°Ñ‚Ð°Ð¹ Ð±Ð¾Ð» Ð¸Ð´ÑÐ²Ñ…Ñ‚ÑÐ¹ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð½ Ð¾Ð½Ð¾Ð¾Ð³ Ð½ÑÐ¼ÑÐ³Ð´Ò¯Ò¯Ð»Ð½Ñ.
-  if (diceNumber !== 1) {
-    // 1-ÑÑÑ ÑÐ»Ð³Ð°Ð°Ñ‚Ð°Ð¹ Ñ‚Ð¾Ð¾ Ð±ÑƒÑƒÐ»Ð°Ð°. Ð‘ÑƒÑƒÑÐ°Ð½ Ñ‚Ð¾Ð¾Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð´ Ð½ÑÐ¼Ð¶ Ó©Ð³Ð½Ó©
-    roundScore = roundScore + diceNumber;
-    document.getElementById("current-" + activePlayer).textContent = roundScore;
+    // Ð‘ÑƒÑƒÑÐ°Ð½ Ñ‚Ð¾Ð¾ Ð½ÑŒ 1 ÑÑÑ ÑÐ»Ð³Ð°Ð°Ñ‚Ð°Ð¹ Ð±Ð¾Ð» Ð¸Ð´ÑÐ²Ñ…Ñ‚ÑÐ¹ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð½ Ð¾Ð½Ð¾Ð¾Ð³ Ð½ÑÐ¼ÑÐ³Ð´Ò¯Ò¯Ð»Ð½Ñ.
+    if (diceNumber !== 1) {
+      // 1-ÑÑÑ ÑÐ»Ð³Ð°Ð°Ñ‚Ð°Ð¹ Ñ‚Ð¾Ð¾ Ð±ÑƒÑƒÐ»Ð°Ð°. Ð‘ÑƒÑƒÑÐ°Ð½ Ñ‚Ð¾Ð¾Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð´ Ð½ÑÐ¼Ð¶ Ó©Ð³Ð½Ó©
+      roundScore = roundScore + diceNumber;
+      document.getElementById(
+        "current-" + activePlayer
+      ).textContent = roundScore;
+    } else {
+      // 1 Ð±ÑƒÑƒÑÐ°Ð½ Ñ‚ÑƒÐ» Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð³ ÑÐ½Ñ Ñ…ÑÑÑÐ³Ñ‚ ÑÐ¾Ð»ÑŒÐ¶ Ó©Ð³Ð½Ó©.
+      switchToNextPlayer();
+    }
   } else {
-    // 1 Ð±ÑƒÑƒÑÐ°Ð½ Ñ‚ÑƒÐ» Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð³ ÑÐ½Ñ Ñ…ÑÑÑÐ³Ñ‚ ÑÐ¾Ð»ÑŒÐ¶ Ó©Ð³Ð½Ó©.
-    switchToNextPlayer();
+    alert("Togloom duuslaa");
   }
 });
 
 // HOLD Ñ‚Ð¾Ð²Ñ‡Ð½Ñ‹ ÑÐ²ÐµÐ½Ñ‚ Ð»Ð¸ÑÑ‚ÐµÐ½ÐµÑ€
 document.querySelector(".btn-hold").addEventListener("click", function () {
-  // Ð£Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ Ñ†ÑƒÐ³Ð»ÑƒÑƒÐ»ÑÐ°Ð½ ÑÑÐ»Ð¶Ð½Ð¸Ð¹ Ð¾Ð½Ð¾Ð¾Ð³ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒ Ð¾Ð½Ð¾Ð¾Ð½ Ð´ÑÑÑ€ Ð½ÑŒ Ð½ÑÐ¼Ð¶ Ó©Ð³Ð½Ó©.
-  scores[activePlayer] = scores[activePlayer] + roundScore;
+  if (isNewGame) {
+    // Ð£Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ Ñ†ÑƒÐ³Ð»ÑƒÑƒÐ»ÑÐ°Ð½ ÑÑÐ»Ð¶Ð½Ð¸Ð¹ Ð¾Ð½Ð¾Ð¾Ð³ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒ Ð¾Ð½Ð¾Ð¾Ð½ Ð´ÑÑÑ€ Ð½ÑŒ Ð½ÑÐ¼Ð¶ Ó©Ð³Ð½Ó©.
+    scores[activePlayer] = scores[activePlayer] + roundScore;
 
-  // Ð”ÑÐ»Ð³ÑÑ† Ð´ÑÑÑ€ Ð¾Ð½Ð¾Ð¾Ð³ Ð½ÑŒ Ó©Ó©Ñ€Ñ‡Ð¸Ð»Ð½Ó©
-  document.getElementById("score-" + activePlayer).textContent =
-    scores[activePlayer];
+    // Ð”ÑÐ»Ð³ÑÑ† Ð´ÑÑÑ€ Ð¾Ð½Ð¾Ð¾Ð³ Ð½ÑŒ Ó©Ó©Ñ€Ñ‡Ð¸Ð»Ð½Ó©
+    document.getElementById("score-" + activePlayer).textContent =
+      scores[activePlayer];
 
-  // Ð£Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡ Ñ…Ð¾Ð¶ÑÐ¾Ð½ ÑÑÑÑ…Ð¸Ð¹Ð³ (Ð¾Ð½Ð¾Ð¾ Ð½ÑŒ 100-Ñ Ð¸Ñ… ÑÑÑÑ…) ÑˆÐ°Ð»Ð³Ð°Ñ…
-  if (scores[activePlayer] >= 10) {
-    // Ð¯Ð»Ð°Ð³Ñ‡ Ð³ÑÑÑÐ½ Ñ‚ÐµÐºÑÑ‚Ð¸Ð¹Ð³ Ð½ÑÑ€Ð½Ð¸Ð¹Ñ… Ð½ÑŒ Ð¾Ñ€Ð¾Ð½Ð´ Ð³Ð°Ñ€Ð³Ð°Ð½Ð°
-    document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
-    document
-      .querySelector(".player-" + activePlayer + "-panel")
-      .classList.add("winner");
-    document
-      .querySelector(".player-" + activePlayer + "-panel")
-      .classList.remove("active");
+    // Ð£Ð³ Ñ‚Ð¾Ð³Ð»Ð¾Ð³Ñ‡ Ñ…Ð¾Ð¶ÑÐ¾Ð½ ÑÑÑÑ…Ð¸Ð¹Ð³ (Ð¾Ð½Ð¾Ð¾ Ð½ÑŒ 100-Ñ Ð¸Ñ… ÑÑÑÑ…) ÑˆÐ°Ð»Ð³Ð°Ñ…
+    if (scores[activePlayer] >= 10) {
+      // Ð¯Ð»Ð°Ð³Ñ‡ Ð³ÑÑÑÐ½ Ñ‚ÐµÐºÑÑ‚Ð¸Ð¹Ð³ Ð½ÑÑ€Ð½Ð¸Ð¹Ñ… Ð½ÑŒ Ð¾Ñ€Ð¾Ð½Ð´ Ð³Ð°Ñ€Ð³Ð°Ð½Ð°
+      isNewGame = false;
+      document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
+      document
+        .querySelector(".player-" + activePlayer + "-panel")
+        .classList.add("winner");
+      document
+        .querySelector(".player-" + activePlayer + "-panel")
+        .classList.remove("active");
+    } else {
+      // Ð¢Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð³ ÑÐ¾Ð»Ð¸Ð½Ð¾.
+      switchToNextPlayer();
+    }
   } else {
-    // Ð¢Ð¾Ð³Ð»Ð¾Ð³Ñ‡Ð¸Ð¹Ð½ ÑÑÐ»Ð¶Ð¸Ð¹Ð³ ÑÐ¾Ð»Ð¸Ð½Ð¾.
-    switchToNextPlayer();
+    alert("Togloom duuussan New Game tovch darj ehluulne uu");
   }
 });
 
